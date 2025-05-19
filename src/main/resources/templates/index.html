@@ -1,16 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt">
-  <head>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bem vindo</title>
-  </head>
-  <body>
-    <form method="post" action="/login">
-      <input type="text" name="email" placeholder="Email" required />
-      <input type="password" name="senha" placeholder="Senha" required />
-      <button type="submit">Login</button>
-    </form>
-    <a href="/cadastroUsuario">Cadastrar novo usuário</a>
-  </body>
+    <title>Login - Gerenciamento de Filmes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h1 {
+            color: #1877f2; /* Um azul inspirado em temas de login comuns */
+            margin-bottom: 24px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: calc(100% - 22px); /* Ajuste para padding e border */
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box; /* Para incluir padding e border na largura total */
+        }
+
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #1877f2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        .login-form button[type="submit"] {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-form button[type="submit"]:hover {
+            background-color: #166fe5;
+        }
+
+        .signup-link {
+            display: block;
+            margin-top: 20px;
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo para mensagens de erro, se você adicionar no futuro */
+        .error-message {
+            color: #fa383e;
+            background-color: #ffe0e0;
+            border: 1px solid #fa383e;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Bem-vindo!</h1>
+        <form method="post" th:action="@{/login}" class="login-form">
+            <div>
+                <input type="text" name="email" placeholder="Email" required />
+            </div>
+            <div>
+                <input type="password" name="senha" placeholder="Senha" required />
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <a th:href="@{/cadastroUsuario}" class="signup-link">Não tem uma conta? Cadastre-se</a>
+    </div>
+</body>
 </html>
